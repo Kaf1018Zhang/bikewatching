@@ -5,12 +5,101 @@ html, body {
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;     /* Center vertically */
+    align-items: center;  
   }
      
   #map {
-    width: 100%;    /* Adjust width to your desired size */
-    height: 100vh;   /* Adjust height to your desired size */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow for effect */
-    border-radius: 8px; /* Optional: rounded corners */
+    width: 100vh;   
+    height: 70vh;  
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px; 
   }
+
+  #map svg {
+    position: absolute;   
+    width: 100%;
+    height: 100%;
+    z-index: 1;           
+    pointer-events: none; 
+}
+
+#map svg circle {
+    fill: var(--color, steelblue);
+    fill-opacity: 0.8;       
+    stroke: white;           
+    stroke-width: 1;         
+    pointer-events: auto;    
+}
+
+.time-filter-container {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    gap: 10px;
+    margin-top: 10px; 
+    margin-bottom: 20px;
+}
+
+#time-slider {
+    width: 300px;
+}
+
+#selected-time {
+    font-weight: bold;
+    min-width: 50px;
+    text-align: center;
+}
+
+
+#any-time {
+    font-style: italic;
+    color: gray;
+}
+
+
+#map circle {
+    --color-departures: steelblue;
+    --color-arrivals: darkorange;
+    --color: color-mix(
+      in oklch,
+      var(--color-departures) calc(100% * var(--departure-ratio)),
+      var(--color-arrivals)
+    );
+    fill: var(--color);
+}
+
+
+:root {
+    --color-departures: steelblue;
+    --color-arrivals: darkorange;
+}
+
+
+:root {
+    --color-departures: steelblue;   
+    --color-balanced: mediumpurple;  
+    --color-arrivals: darkorange;  
+}
+
+
+.legend {
+    display: flex;
+    justify-content: space-between; 
+    width: 100vh; 
+    height: 40px; 
+    margin-top: 5px; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.legend div {
+    flex: 1; 
+    text-align: center;
+    padding: 10px 0; 
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+}
+
+.legend div:nth-child(1) { background: var(--color-departures); } 
+.legend div:nth-child(2) { background: var(--color-balanced); }
+.legend div:nth-child(3) { background: var(--color-arrivals); } 
